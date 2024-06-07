@@ -28,4 +28,46 @@ router.route("/").get((req,res)=>{
     })
 })
 
+router.route("/update/:id").put(async(req,res)=>{
+    let userId =req.params.id;
+    const{name,age,gender}=req.body;
+    const updateStudent={
+        name,
+        age,
+        gender
+    }
+    const update =await Student.findByIdAndUpdate(userId,updateStudent).then(()=>{
+        res.status(200).send({status:"User Updated",user:update});
+    }).catch((err)=>{
+        console.log(err);
+        res.status(500).send({status:"Error With Updating Data",err:err.message});
+    })
+
+
+    router.route("/delete/:id").delete(async(req,res)=>{
+        let userId = req.params.id;
+
+        await Student.findByIdAndDelete(userId).then(()=>{
+            res.status(200).send({status:"User Deleted"});
+        }).catch((err)=>{
+            console.log(err);
+            res.status(500).send({status:"Error with Delete User",err:err.message});
+        })
+    })
+
+    router.route("/get/:id").get(async(req,res)=>{
+        let userId= req.params.id;
+
+        const user= await Student.findById(userId).then(()=>{
+            res.status(200).send({user:user});
+        }).catch((err)=>{
+            console.log(err);
+            res.status(500).send({status:"can't find student"});
+        })
+
+    })
+
+    
+})
+
 module.exports= router;
