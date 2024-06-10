@@ -12,8 +12,8 @@ function Header(){
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
               <div class="navbar-nav">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-                <a class="nav-link" href="#">Add Student</a>  
+                <a class="nav-link active" aria-current="page" href="/">Home</a>
+                <a class="nav-link" href="/add">Add Student</a>  
               </div>
             </div>
           </div>
